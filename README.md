@@ -37,3 +37,11 @@ Gerando uma versão de produção do aplicativo no folder `build`
 ```bash
 yarn build
 ```
+
+## Dependências Extras
+
+Controlador de rotas
+
+```bash
+yarn add react-router-dom
+```
