@@ -56,7 +56,7 @@ yarn add react-router-dom
 
 Pacote de tipagem do React Router Dom
 
-=> -D = dependência de desenvolvimento
+- `-D` => dependência de desenvolvimento
 
 ```bash
 yarn add -D @types/react-router-dom
