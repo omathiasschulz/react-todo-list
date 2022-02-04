@@ -1,5 +1,5 @@
-import { Redirect } from "react-router-dom";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes as Switch } from "react-router-dom";
 import { Dashboard } from "../pages";
 
 export const Routes = () => {
@@ -7,9 +7,9 @@ export const Routes = () => {
     <BrowserRouter>
       <Switch>
 
-        <Route exact path='/pagina-inicial' component={Dashboard} />
+        <Route path='/pagina-inicial' element={<Dashboard/>} />
 
-        <Route path='*' component={() => <Redirect to='/pagina-inicial' />)} />
+        <Route path='*' element={<Navigate to='/pagina-inicial' />} />
 
       </Switch>
     </BrowserRouter>
