@@ -38,10 +38,26 @@ Gerando uma versão de produção do aplicativo no folder `build`
 yarn build
 ```
 
-## Dependências Extras
+## Dependências
 
-Controlador de rotas
+Instalando as dependências
+
+```bash
+yarn
+```
+
+### Dependências Extras
+
+Controlador de rotas React Router Dom
 
 ```bash
 yarn add react-router-dom
+```
+
+Pacote de tipagem do React Router Dom
+
+=> -D = dependência de desenvolvimento
+
+```bash
+yarn add -D @types/react-router-dom
 ```
