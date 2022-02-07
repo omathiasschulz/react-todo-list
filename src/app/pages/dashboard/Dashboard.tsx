@@ -2,21 +2,30 @@ import { useCallback, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useUsuarioLogado } from '../../shared/hooks';
 
+interface IListItem {
+  title: string;
+  isSelected: boolean;
+}
+
 export const Dashboard = () => {
   const counterRef = useRef({ counter: 0 });
 
   const { nomeDoUsuario, logout } = useUsuarioLogado();
 
-  const [lista, setLista] = useState<string[]>(['Todo 01', 'Todo 02', 'Todo 03']);
+  const [lista, setLista] = useState<IListItem[]>([]);
 
-  const handleInputKeyDown:React.KeyboardEventHandler<HTMLInputElement> = useCallback((e) => {
+  const handleInputKeyDown: React.KeyboardEventHandler<HTMLInputElement> = useCallback((e) => {
     const value = e.currentTarget.value.trim();
     if (e.key !== 'Enter' || value.length === 0) return;
 
     e.currentTarget.value = '';
     setLista((oldLista) => {
-      if (oldLista.includes(value)) return oldLista;
-      return [...oldLista, value]
+      if (oldLista.some((listItem) => listItem.title === value)) return oldLista;
+
+      return [
+        ...oldLista,
+        { title: value, isSelected: false },
+      ];
     });
   }, []);
 
@@ -46,9 +55,32 @@ export const Dashboard = () => {
 
       <br></br>
       <br></br>
+      <p>Itens Selecionados: {lista.filter(listItem => listItem.isSelected).length}</p>
 
       <ul>
-        {lista.map((item) => <li key={item}>{item}</li>)}
+        {/* monta a lista de itens de acordo com array */}
+        {lista.map((listItem) => {
+          return <li key={listItem.title}>
+            <input
+              type="checkbox"
+              checked={listItem.isSelected}
+              onChange={() => {
+                setLista(oldLista => {
+                  return oldLista.map(oldListItem => {
+                    const newIsSelected = oldListItem.title === listItem.title
+                      ? !oldListItem.isSelected
+                      : oldListItem.isSelected;
+                    return {
+                      ...oldListItem,
+                      isSelected: newIsSelected,
+                    }
+                  });
+                })
+              }}
+            />
+            {listItem.title}
+          </li>;
+        })}
       </ul>
     </div>
   );
