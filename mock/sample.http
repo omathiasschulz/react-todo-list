@@ -1,0 +1,30 @@
+# Sample de testes com API do servidor de simulação
+
+## Tarefas
+
+### POST
+POST http://localhost:5000/tarefas
+Content-Type: application/json
+
+{
+	"title": "Tarefa 04",
+	"isDone": false
+}
+
+### GET
+GET http://localhost:5000/tarefas
+
+### GET ONE
+GET http://localhost:5000/tarefas/1
+
+### PUT
+PUT http://localhost:5000/tarefas/3
+Content-Type: application/json
+
+{
+	"title": "Tarefa 01 Modificada",
+	"isDone": true
+}
+
+### DELETE
+DELETE http://localhost:5000/tarefas/4
