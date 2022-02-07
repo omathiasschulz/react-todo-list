@@ -46,18 +46,32 @@ Instalando as dependências
 yarn
 ```
 
-### Dependências Extras
+### Dependências Extras utilizadas no projeto
 
-Controlador de rotas React Router Dom
+- **Controlador de rotas React Router Dom**
 
 ```bash
 yarn add react-router-dom
 ```
 
-Pacote de tipagem do React Router Dom
+- **Pacote de tipagem do React Router Dom**
 
 - `-D` => dependência de desenvolvimento
 
 ```bash
 yarn add -D @types/react-router-dom
+```
+
+- **Simulador de backend**
+
+```bash
+yarn add -D json-server
+```
+
+## Backend
+
+Rodando uma simulação do backend para teste local do projeto
+
+```bash
+json-server --port 5000 --watch mock/db.json
 ```
