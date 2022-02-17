@@ -2,9 +2,10 @@ import { useCallback, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useUsuarioLogado } from '../../shared/hooks';
 
-interface IListItem {
+interface ITarefa {
+  id: number;
   title: string;
-  isSelected: boolean;
+  isDone: boolean;
 }
 
 export const Dashboard = () => {
@@ -12,7 +13,7 @@ export const Dashboard = () => {
 
   const { nomeDoUsuario, logout } = useUsuarioLogado();
 
-  const [lista, setLista] = useState<IListItem[]>([]);
+  const [lista, setLista] = useState<ITarefa[]>([]);
 
   const handleInputKeyDown: React.KeyboardEventHandler<HTMLInputElement> = useCallback((e) => {
     const value = e.currentTarget.value.trim();
@@ -24,7 +25,11 @@ export const Dashboard = () => {
 
       return [
         ...oldLista,
-        { title: value, isSelected: false },
+        {
+          id: oldLista.length,
+          title: value,
+          isDone: false,
+        },
       ];
     });
   }, []);
@@ -55,24 +60,24 @@ export const Dashboard = () => {
 
       <br></br>
       <br></br>
-      <p>Itens Selecionados: {lista.filter(listItem => listItem.isSelected).length}</p>
+      <p>Itens Selecionados: {lista.filter(listItem => listItem.isDone).length}</p>
 
       <ul>
         {/* monta a lista de itens de acordo com array */}
         {lista.map((listItem) => {
-          return <li key={listItem.title}>
+          return <li key={listItem.id}>
             <input
               type="checkbox"
-              checked={listItem.isSelected}
+              checked={listItem.isDone}
               onChange={() => {
                 setLista(oldLista => {
                   return oldLista.map(oldListItem => {
-                    const newIsSelected = oldListItem.title === listItem.title
-                      ? !oldListItem.isSelected
-                      : oldListItem.isSelected;
+                    const newIsDone = oldListItem.title === listItem.title
+                      ? !oldListItem.isDone
+                      : oldListItem.isDone;
                     return {
                       ...oldListItem,
-                      isSelected: newIsSelected,
+                      isDone: newIsDone,
                     }
                   });
                 })
