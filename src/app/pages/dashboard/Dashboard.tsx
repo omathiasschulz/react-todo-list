@@ -1,12 +1,8 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useUsuarioLogado } from '../../shared/hooks';
-
-interface ITarefa {
-  id: number;
-  title: string;
-  isDone: boolean;
-}
+import { ApiException } from '../../shared/services/api/ApiException';
+import { ITarefa, TarefasService } from '../../shared/services/api/tarefas/TarefasService';
 
 export const Dashboard = () => {
   const counterRef = useRef({ counter: 0 });
@@ -14,6 +10,17 @@ export const Dashboard = () => {
   const { nomeDoUsuario, logout } = useUsuarioLogado();
 
   const [lista, setLista] = useState<ITarefa[]>([]);
+
+  useEffect(() => {
+    TarefasService.get()
+      .then((result) => {
+        if (result instanceof ApiException) {
+          alert(result.message);
+          return;
+        }
+        setLista(result);
+      });
+  }, [])
 
   const handleInputKeyDown: React.KeyboardEventHandler<HTMLInputElement> = useCallback((e) => {
     const value = e.currentTarget.value.trim();
