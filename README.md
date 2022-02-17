@@ -66,6 +66,10 @@ yarn add -D @types/react-router-dom
 
 ```bash
 yarn add -D json-server
+
+# caso o comando acima não funcione
+# instale o json-server globalmente no computador usando o npm
+npm install -g json-server
 ```
 
 ## Backend
