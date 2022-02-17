@@ -72,6 +72,12 @@ yarn add -D json-server
 npm install -g json-server
 ```
 
+- **Cliente HTTP para comunicação com o server**
+
+```bash
+yarn add axios
+```
+
 ## Backend
 
 Rodando uma simulação do backend para teste local do projeto
