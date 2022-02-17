@@ -11,6 +11,7 @@ export const Dashboard = () => {
 
   const [lista, setLista] = useState<ITarefa[]>([]);
 
+  // lista todas as tarefas consultando no server
   useEffect(() => {
     TarefasService.get()
       .then((result) => {
@@ -27,19 +28,22 @@ export const Dashboard = () => {
     if (e.key !== 'Enter' || value.length === 0) return;
 
     e.currentTarget.value = '';
-    setLista((oldLista) => {
-      if (oldLista.some((listItem) => listItem.title === value)) return oldLista;
 
-      return [
-        ...oldLista,
-        {
-          id: oldLista.length,
-          title: value,
-          isDone: false,
-        },
-      ];
-    });
-  }, []);
+    if (lista.some((listItem) => listItem.title === value)) return;
+
+    // realiza o cadastro de uma nova tarefa e atualiza a lista na tela com a nova tarefa
+    TarefasService.post({ title: value, isDone: false })
+      .then((result) => {
+        if (result instanceof ApiException) {
+          alert(result.message);
+          return;
+        }
+
+        setLista((oldLista) => {
+          return [...oldLista, result];
+        });
+      });
+  }, [lista]);
 
   return (
     <div>
