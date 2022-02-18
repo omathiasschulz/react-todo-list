@@ -1,6 +1,6 @@
 # react-todo-list
 
-Uma simples Todo List realiza em React com operações de CRUD (Create, Read, Update, Delete) e comunicação com servidor.
+Uma simples Todo List realiza em React utilizando TypeScript com operações de CRUD (Create, Read, Update, Delete) e comunicação com servidor.
 
 ## React
 
