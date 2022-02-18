@@ -1,8 +1,10 @@
-# react-ts-app
+# react-todo-list
+
+Uma simples Todo List realiza em React com operações de CRUD (Create, Read, Update, Delete) e comunicação com servidor.
 
 ## React
 
-O React é uma biblioteca JavaScript de código aberto com foco em criar interfaces de usuário em páginas web.
+O **React** é uma biblioteca JavaScript de código aberto com foco em criar interfaces de usuário em páginas web.
 
 ## Template
 
@@ -56,7 +58,7 @@ yarn add react-router-dom
 
 - **Pacote de tipagem do React Router Dom**
 
-- `-D` => dependência de desenvolvimento
+`-D` => dependência de desenvolvimento
 
 ```bash
 yarn add -D @types/react-router-dom

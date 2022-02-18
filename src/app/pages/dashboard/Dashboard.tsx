@@ -87,7 +87,7 @@ export const Dashboard = () => {
 
       <p>Usuário Logado: {nomeDoUsuario}</p>
 
-      <p>Contador: {counterRef.current.counter}</p>
+      <p>Exemplos Botões</p>
       <button onClick={() => counterRef.current.counter++}>Incrementar</button>
       <button onClick={() => console.log(counterRef.current.counter)}>Apresenta Valor</button>
       <button onClick={logout}>Logout</button>
@@ -117,7 +117,7 @@ export const Dashboard = () => {
               checked={listItem.isDone}
               onChange={() => handleToggleComplete(listItem.id)}
             />
-            {listItem.title}
+            &nbsp;{listItem.title}&nbsp;
             <button onClick={() => {handleDelete(listItem.id)}}>Apagar</button>
           </li>;
         })}
