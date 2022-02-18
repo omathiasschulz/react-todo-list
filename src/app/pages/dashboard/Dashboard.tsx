@@ -45,6 +45,28 @@ export const Dashboard = () => {
       });
   }, [lista]);
 
+  const handleToggleComplete = useCallback((id: number) => {
+    const tarefaToUpdate = lista.find(tarefa => tarefa.id === id);
+    if (!tarefaToUpdate) return;
+
+    TarefasService.updateById(id, {
+      ...tarefaToUpdate,
+      isDone: !tarefaToUpdate.isDone,
+    }).then((result) => {
+      if (result instanceof ApiException) {
+        alert(result.message);
+        return;
+      }
+
+      setLista(oldLista => {
+        return oldLista.map(oldListItem => {
+          if (oldListItem.id === id) return result;
+          return oldListItem;
+        });
+      });
+    });
+  }, [lista]);
+
   return (
     <div>
       <br></br>
@@ -80,19 +102,7 @@ export const Dashboard = () => {
             <input
               type="checkbox"
               checked={listItem.isDone}
-              onChange={() => {
-                setLista(oldLista => {
-                  return oldLista.map(oldListItem => {
-                    const newIsDone = oldListItem.title === listItem.title
-                      ? !oldListItem.isDone
-                      : oldListItem.isDone;
-                    return {
-                      ...oldListItem,
-                      isDone: newIsDone,
-                    }
-                  });
-                })
-              }}
+              onChange={() => handleToggleComplete(listItem.id)}
             />
             {listItem.title}
           </li>;
