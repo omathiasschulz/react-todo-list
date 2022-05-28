@@ -1,6 +1,6 @@
 # react-todo-list
 
-Uma simples Todo List realiza em React utilizando TypeScript com operações de CRUD (Create, Read, Update, Delete) e comunicação com servidor.
+Uma simples Todo List realizada em React utilizando TypeScript com operações de CRUD (Create, Read, Update, Delete) e comunicação com servidor.
 
 ## React
 
@@ -58,7 +58,7 @@ yarn add react-router-dom
 
 - **Pacote de tipagem do React Router Dom**
 
-`-D` => dependência de desenvolvimento
+**-D** => Dependência de desenvolvimento
 
 ```bash
 yarn add -D @types/react-router-dom
